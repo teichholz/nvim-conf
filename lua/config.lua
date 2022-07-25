@@ -61,11 +61,14 @@ require'lspconfig'.bashls.setup{
 	filetypes = {"sh", "zsh", "bash"},
 }
 
-require("null-ls").setup({
+local null = require("null-ls")
+null.setup({
     sources = {
-        require("null-ls").builtins.formatting.stylua,
-        require("null-ls").builtins.diagnostics.eslint,
-        require("null-ls").builtins.completion.spell,
-				require("null-ls").builtins.code_actions.refactoring
+        null.builtins.formatting.stylua,
+        null.builtins.diagnostics.eslint,
+        null.builtins.completion.spell,
+				null.builtins.code_actions.refactoring,
+				null.builtins.diagnostics.deadnix,
+		    null.builtins.code_actions.statix,
     },
 })
