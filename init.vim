@@ -1,21 +1,21 @@
-lua require('plugins')
-lua require('config')
-lua require('lsp')
-lua require('evil-lualine')
-lua require("telescope").load_extension "file_browser"
-lua require('telescope').load_extension "projects"
-lua require('telescope').load_extension "fzf"
-lua require("telescope").load_extension "ui-select"
-
-
 set termguicolors
 set shiftround
 set shiftwidth=2
 set smarttab
 set tabstop=2
-
+set completeopt=menu,menuone,noselect
 set number
 set relativenumber
+
+lua require('plugins')
+lua require('config')
+lua require('_lsp')
+lua require('_cmp')
+lua require('evil-lualine')
+lua require("telescope").load_extension "file_browser"
+lua require('telescope').load_extension "projects"
+lua require('telescope').load_extension "fzf"
+lua require("telescope").load_extension "ui-select"
 
 set background=dark
 let g:edge_style = 'aura'

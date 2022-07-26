@@ -22,7 +22,6 @@ vim.api.nvim_command("packadd packer.nvim")
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-
 	use "rktjmp/hotpot.nvim"
 
   -- lsp code completion
@@ -31,33 +30,12 @@ return require('packer').startup(function(use)
     "neovim/nvim-lspconfig",
 	}
 
-	use({
-		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-		config = function()
-			require("lsp_lines").setup()
-			vim.diagnostic.config({
-				virtual_text = false,
-			})
-		end,
-	})
-
-	use({
-		"jose-elias-alvarez/null-ls.nvim"
-	})
-
-	use {
-		"ThePrimeagen/refactoring.nvim",
-		requires = {
-			{"nvim-lua/plenary.nvim"},
-			{"nvim-treesitter/nvim-treesitter"}
-		}
-	}
-
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
+	use  'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
 
 	use {
@@ -68,9 +46,6 @@ return require('packer').startup(function(use)
 		end
 	}
 
-	use { "sar/luasnip.nvim" }
-
-  use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -135,10 +110,10 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- use {
-  --   "windwp/nvim-autopairs",
-  --   config = function() require("nvim-autopairs").setup {} end
-  -- }
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
 
   use "machakann/vim-sandwich"
 

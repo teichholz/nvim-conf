@@ -34,7 +34,7 @@ lspconf['bashls'] = {filetypes = {"sh", "zsh", "bash"}}
 lspconf['rnix'] = {};
 
 
-local servers = { "sumneko_lua", "rnix", "bashls" };
+lspServers = { "sumneko_lua", "rnix", "bashls" };
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -43,7 +43,7 @@ vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
+map('n', '<space>o-', ":Ex<cr>", opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -72,11 +72,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>cf', vim.lsp.buf.formatting, bufopts)
 end
 
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-}
+local lsp_flags = {}
 
-for _, server in ipairs(servers) do
+for _, server in ipairs(lspServers) do
 	require('lspconfig')[server].setup{
     on_attach = on_attach,
     flags = lsp_flags,

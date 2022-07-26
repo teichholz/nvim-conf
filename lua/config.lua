@@ -57,18 +57,4 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
-require'lspconfig'.bashls.setup{
-	filetypes = {"sh", "zsh", "bash"},
-}
 
-local null = require("null-ls")
-null.setup({
-    sources = {
-        null.builtins.formatting.stylua,
-        null.builtins.diagnostics.eslint,
-        null.builtins.completion.spell,
-				null.builtins.code_actions.refactoring,
-				null.builtins.diagnostics.deadnix,
-		    null.builtins.code_actions.statix,
-    },
-})
