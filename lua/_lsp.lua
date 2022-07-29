@@ -12,29 +12,39 @@ local lspconf = {}
 lspconf['sumneko_lua'] = {
 	Lua = {
 		runtime = {
-			-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 			version = 'LuaJIT',
 		},
 		diagnostics = {
-			-- Get the language server to recognize the `vim` global
 			globals = {'vim'},
 		},
 		workspace = {
-			-- Make the server aware of Neovim runtime files
 			library = vim.api.nvim_get_runtime_file("", true),
 		},
-		-- Do not send telemetry data containing a randomized but unique identifier
 		telemetry = {
 			enable = false,
 		},
+		format = {
+			enable = true,
+			defaultConfig = {
+				indent_style = "space",
+				indent_size = "2",
+			}
+		}
 	},
 }
 
-lspconf['bashls'] = {filetypes = {"sh", "zsh", "bash"}}
-lspconf['rnix'] = {};
+lspconf['bashls'] = {
+	filetypes = {"sh", "zsh", "bash"},
+	cmd_env = {
+		GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)|.zsh*"
+	},
+
+}
+lspconf['rnix'] = {}
+lspconf['pyright'] = {}
 
 
-lspServers = { "sumneko_lua", "rnix", "bashls" };
+local lspServers = { "sumneko_lua", "rnix", "bashls", "pyright" }
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -73,11 +83,13 @@ local on_attach = function(client, bufnr)
 end
 
 local lsp_flags = {}
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 for _, server in ipairs(lspServers) do
 	require('lspconfig')[server].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 		settings = lspconf[server],
+		capabilities = capabilities
 	}
 end

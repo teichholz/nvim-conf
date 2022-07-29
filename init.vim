@@ -9,8 +9,8 @@ set relativenumber
 
 lua require('plugins')
 lua require('config')
-lua require('_lsp')
 lua require('_cmp')
+lua require('_lsp')
 lua require('evil-lualine')
 lua require("telescope").load_extension "file_browser"
 lua require('telescope').load_extension "projects"
