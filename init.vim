@@ -14,7 +14,7 @@ lua require('_lsp')
 lua require('evil-lualine')
 lua require("telescope").load_extension "file_browser"
 lua require('telescope').load_extension "projects"
-lua require('telescope').load_extension "fzf"
+"lua require('telescope').load_extension "fzf"
 lua require("telescope").load_extension "ui-select"
 
 set background=dark

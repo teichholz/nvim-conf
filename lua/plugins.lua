@@ -113,6 +113,13 @@ return require('packer').startup(function(use)
     end
   }
 
+	use {
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require'colorizer'.setup()
+		end
+	}
+
   use {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
