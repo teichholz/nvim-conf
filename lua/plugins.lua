@@ -22,6 +22,7 @@ vim.api.nvim_command("packadd packer.nvim")
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+
 	use "rktjmp/hotpot.nvim"
 
   -- lsp code completion
@@ -29,6 +30,21 @@ return require('packer').startup(function(use)
     "williamboman/mason.nvim",
     "neovim/nvim-lspconfig",
 	}
+
+	-- nice ui
+	use({
+		"glepnir/lspsaga.nvim",
+		branch = "main",
+		config = function()
+			local saga = require("lspsaga")
+
+			saga.init_lsp_saga({
+				-- your configuration
+			})
+		end,
+	})
+
+	use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
 
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
