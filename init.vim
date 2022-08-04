@@ -21,5 +21,6 @@ nnoremap <space>fr :Telescope oldfiles theme=ivy<CR>
 nnoremap <space>ce :TroubleToggle<CR>
 nnoremap <C-q> :q!<CR>
 vnoremap < <gv
+nnoremap <tab> %
 vnoremap > >gv
 

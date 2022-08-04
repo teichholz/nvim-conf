@@ -145,8 +145,7 @@ return require('packer').startup(function(use)
   use "machakann/vim-sandwich"
 
 	use "tpope/vim-sensible"
-  use "tpope/vim-fugitive"
-
+  use "TimUntersberger/neogit"
 	use {
 		'lewis6991/gitsigns.nvim',
 		config = function()
@@ -176,6 +175,8 @@ return require('packer').startup(function(use)
 			}
 		end
 	}
+
+  use "rcarriga/nvim-notify"
 
 	use "tpope/vim-commentary"
 
