@@ -42,9 +42,10 @@ lspconf['bashls'] = {
 }
 lspconf['rnix'] = {}
 lspconf['pyright'] = {}
+lspconf['tsserver'] = {}
 
 
-local lspServers = { "sumneko_lua", "rnix", "bashls", "pyright" }
+local lspServers = { "sumneko_lua", "rnix", "bashls", "pyright", "tsserver" }
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

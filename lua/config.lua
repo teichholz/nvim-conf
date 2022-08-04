@@ -31,4 +31,5 @@ require('leap').set_default_keymaps(true)
 
 
 require("mason").setup()
+require("mason-lspconfig").setup()
 

@@ -1,13 +1,11 @@
 local function set(option, value)
   if value == nil then
-    vim.api.nvim_set_option(option, true)
+    vim.api.nvim_set_option_value(option, true, {scope = "global"})
   else
-    vim.api.nvim_set_option(option, value)
+    vim.api.nvim_set_option_value(option, value, {scope= "global"})
   end
 end
 
--- no line wraps
---vim.api.nvim_set_option("nowrap", true)
 set("shiftwidth", 2)
 set("smarttab")
 set("tabstop", 2)
@@ -35,7 +33,7 @@ set("smartcase", true)
 set("cursorline")
 
 -- theme
-set("termguicolors", true)
+set("termguicolors")
 set("background", "dark")
 
 vim.g.edge_style = "aura"
