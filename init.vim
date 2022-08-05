@@ -1,6 +1,7 @@
-lua require('hotpot')
-lua require('options')
+"lua require('hotpot')
 lua require('plugins')
+
+lua require('options')
 lua require('config')
 lua require('_cmp')
 lua require('_lsp')
@@ -9,7 +10,10 @@ lua require("telescope").load_extension "file_browser"
 lua require('telescope').load_extension "projects"
 lua require('telescope').load_extension "fzf"
 lua require("telescope").load_extension "ui-select"
-
+lua require("telescope").load_extension "file_browser"
+lua require('telescope').load_extension "projects"
+lua require('telescope').load_extension "fzf"
+lua require("telescope").load_extension "ui-select"
 
 nnoremap <space>ff :Telescope file_browser theme=ivy path=%:p:h<CR>
 nnoremap <space>pp :Telescope projects theme=ivy<CR>

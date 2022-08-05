@@ -1,9 +1,5 @@
 local function set(option, value)
-  if value == nil then
-    vim.api.nvim_set_option_value(option, true, {scope = "global"})
-  else
-    vim.api.nvim_set_option_value(option, value, {scope= "global"})
-  end
+  vim.api.nvim_set_option_value(option, value or true, {scope = "global"})
 end
 
 set("shiftwidth", 2)
