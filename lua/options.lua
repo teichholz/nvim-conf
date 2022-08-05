@@ -1,36 +1,37 @@
-local function set(option, value)
-  vim.api.nvim_set_option_value(option, value or true, {scope = "global"})
-end
+local options = {
+  shiftwidth = 2,
+  smarttab = true,
+  tabstop = 2,
+  softtabstop = 2,
+  expandtab = true,
 
-set("shiftwidth", 2)
-set("smarttab")
-set("tabstop", 2)
-set("softtabstop", 2)
-set("expandtab")
-
-set("completeopt", "menu,menuone,preview,noinsert")
+  completeopt = { "menu", "menuone", "preview", "noinsert" },
 
 -- relative line numbers
-set("number")
-set("relativenumber")
+  number = true,
+  relativenumber = true,
 
 -- clipboard
-set("clipboard", "unnamed")
-
-set("mouse", "a")
+  clipboard = "unnamed",
 
 -- no swapfiles
-set("undofile", true)
+  swapfile = false,
+  undofile = true,
 
 -- smart search
-set("smartcase", true)
+  smartcase = true,
 
 -- cursor line
-set("cursorline")
+  cursorline = true,
 
 -- theme
-set("termguicolors")
-set("background", "dark")
+  termguicolors = true,
+  background = "dark",
+}
+
+for k, v in pairs(options) do
+  vim.opt[k] = v
+end
 
 vim.g.edge_style = "aura"
 vim.g.edge_better_performance = 0
