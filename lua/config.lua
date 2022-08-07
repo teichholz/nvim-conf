@@ -16,6 +16,10 @@ require'nvim-treesitter.configs'.setup {
       node_decremental = "grm",
     },
   },
+  -- html / jsx autoclose tag
+  autotag = {
+    enable = true,
+  },
 }
 
 -- This is your opts table

@@ -180,6 +180,17 @@ return require('packer').startup(function(use)
 
 	use "tpope/vim-commentary"
 
+  use({
+    "kylechui/nvim-surround",
+    config = function()
+        require("nvim-surround").setup({})
+    end
+  })
+
+  -- Emmet
+  use "mattn/emmet-vim"
+  use "windwp/nvim-ts-autotag"
+
   if packer_bootstrap then
     require('packer').sync()
   end

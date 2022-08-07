@@ -6,8 +6,6 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
-require("telescope").load_extension("ui-select")
-
 local lspconf = {}
 lspconf['sumneko_lua'] = {
 	Lua = {
@@ -49,12 +47,6 @@ local lspServers = { "sumneko_lua", "rnix", "bashls", "pyright", "tsserver" }
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-map('n', '<space>o-', ":Ex<cr>", opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -81,6 +73,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('v', '<space>ca', vim.lsp.buf.code_action, bufopts)
   map('n', 'gr', '<cmd>Telescope lsp_references theme=ivy<cr>', bufopts)
   vim.keymap.set('n', '<space>cf', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('v', '<space>cf', vim.lsp.buf.range_formatting, bufopts)
 end
 
 local lsp_flags = {}

@@ -27,6 +27,9 @@ local options = {
 -- theme
   termguicolors = true,
   background = "dark",
+
+-- mouse 
+  mouse = "a",
 }
 
 for k, v in pairs(options) do
