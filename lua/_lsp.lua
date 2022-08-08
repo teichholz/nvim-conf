@@ -34,13 +34,20 @@ lspconf['sumneko_lua'] = {
 lspconf['bashls'] = {
 	filetypes = {"sh", "zsh", "bash"},
 	cmd_env = {
-		GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)|.zsh*"
+		GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)|*zsh*"
 	},
 
 }
 lspconf['rnix'] = {}
 lspconf['pyright'] = {}
 lspconf['tsserver'] = {}
+
+-- needed for jsonls
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+lspconf['jsonls'] = {
+  capabilities = capabilities,
+}
 
 
 local lspServers = { "sumneko_lua", "rnix", "bashls", "pyright", "tsserver" }
@@ -79,9 +86,6 @@ end
 local lsp_flags = {}
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require("flutter-tools").setup{
-	on_attach = on_attach
-}
 
 for _, server in ipairs(lspServers) do
 	require('lspconfig')[server].setup{
@@ -91,3 +95,11 @@ for _, server in ipairs(lspServers) do
 		capabilities = capabilities
 	}
 end
+
+require("flutter-tools").setup{
+	on_attach = on_attach
+}
+
+require("mason-lspconfig").setup{
+  automatic_installation = true,
+}

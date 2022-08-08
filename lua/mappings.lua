@@ -53,3 +53,4 @@ map("n", "<C-q>", ":q!<CR>", opts)
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 map("n", "<tab>", "%", opts)
+

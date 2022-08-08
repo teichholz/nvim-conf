@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-	-- ensure_installed = "all",
+	ensure_installed = "all",
 	auto_intall = true,
 	highlight = {
 		enable = true,
@@ -35,5 +35,4 @@ require('leap').set_default_keymaps(true)
 
 
 require("mason").setup()
-require("mason-lspconfig").setup()
 
