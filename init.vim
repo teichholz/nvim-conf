@@ -35,4 +35,4 @@ endfun
 
 command! TrimWhitespace call TrimWhitespace()
 
-nnoremap <Leader>w  <cmd>TrimWhitespace<CR>
+"nnoremap <Leader>w  <cmd>TrimWhitespace<CR>

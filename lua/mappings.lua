@@ -1,5 +1,4 @@
-vim.g.mapleader = ' '
-wk = require("which-key")
+local wk = require("which-key")
 
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
@@ -19,15 +18,19 @@ local global = {
       r = { ":Telescope oldfiles theme=ivy<CR>", "Recent files" },
     },
     c = {
+      name = "Code",
       e = {":TroubleToggle<CR>", "Show code errors" },
     },
     p = {
+      name = "Project",
       p = { ":Telescope projects theme=ivy<CR>", "Find project" }
     },
     b = {
+      name = "Buffer",
       b = { ":Telescope buffers theme=ivy<CR>", "Find buffer" }
     },
     s = {
+      name = "Search",
       b = { ":Telescope live_grep theme=ivy<CR>", "Search buffer" }
     },
     e = { vim.diagnostic.open_float, "Show diagnostics" },
@@ -53,4 +56,6 @@ map("n", "<C-q>", ":q!<CR>", opts)
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 map("n", "<tab>", "%", opts)
+map("v", "<tab>", "%", opts)
+map("n", "U", "<cmd>redo<cr>", opts)
 

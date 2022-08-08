@@ -36,6 +36,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+vim.g.mapleader = ' '
 vim.g.edge_style = "aura"
 vim.g.edge_better_performance = 0
 vim.cmd("colorscheme edge")

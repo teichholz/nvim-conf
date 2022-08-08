@@ -169,9 +169,10 @@ return require('packer').startup(function(use)
 		"folke/which-key.nvim",
 		config = function()
 			require("which-key").setup {
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
+        height = { min = 4, max = 45 }, -- min and max height of the columns
+        width = { min = 20, max = 35 }, -- min and max width of the columns
+        spacing = 0, -- spacing between columns
+        align = "left", -- align columns left, center or right
 			}
 		end
 	}
