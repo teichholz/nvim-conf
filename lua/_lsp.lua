@@ -8,27 +8,29 @@ end
 
 local lspconf = {}
 lspconf['sumneko_lua'] = {
-	Lua = {
-		runtime = {
-			version = 'LuaJIT',
-		},
-		diagnostics = {
-			globals = {'vim'},
-		},
-		workspace = {
-			library = vim.api.nvim_get_runtime_file("", true),
-		},
-		telemetry = {
-			enable = false,
-		},
-		format = {
-			enable = true,
-			defaultConfig = {
-				indent_style = "space",
-				indent_size = "2",
-			}
-		}
-	},
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+      format = {
+        enable = true,
+        defaultConfig = {
+          indent_style = "space",
+          indent_size = "2",
+        }
+      }
+    },
+  },
 }
 
 lspconf['bashls'] = {
@@ -36,7 +38,6 @@ lspconf['bashls'] = {
 	cmd_env = {
 		GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)|*zsh*"
 	},
-
 }
 lspconf['rnix'] = {}
 lspconf['pyright'] = {}
@@ -49,15 +50,26 @@ lspconf['jsonls'] = {
   capabilities = capabilities,
 }
 
+lspconf['ccls']= {
+  init_options = {
+    compilationDatabaseDirectory = "build";
+    index = {
+      threads = 0;
+    };
+    clang = {
+      excludeArgs = { "-frounding-math"} ;
+    };
+  }
+}
 
-local lspServers = { "sumneko_lua", "rnix", "bashls", "pyright", "tsserver" }
+local lspServers = { "sumneko_lua", "rnix", "bashls", "pyright", "tsserver", "ccls" }
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local wk = require("which-key")
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -98,12 +110,15 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 
 for _, server in ipairs(lspServers) do
-	require('lspconfig')[server].setup{
+  local conf = {
     on_attach = on_attach,
     flags = lsp_flags,
-		settings = lspconf[server],
 		capabilities = capabilities
 	}
+
+  Lib.Table.extend(conf, lspconf[server])
+
+	require('lspconfig')[server].setup(conf)
 end
 
 require("flutter-tools").setup{

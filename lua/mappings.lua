@@ -10,6 +10,23 @@ end
 
 local opts = { noremap=true, silent=true }
 
+vim.cmd([[
+fun! TrimWhitespace()
+  let l:save = winsaveview()
+  keeppatterns %s/\s\+$//e
+  call winrestview(l:save)
+endfun
+
+function TrimEndLines()
+    let save_cursor = getpos(".")
+    silent! %s#\($\n\s*\)\+\%$##
+    call setpos('.', save_cursor)
+endfunction
+
+command! TrimWhitespace call TrimWhitespace()
+command! TrimEndLines call TrimEndLines()
+]])
+
 local global = {
     f = {
       name = "Find files",
@@ -46,6 +63,7 @@ local global = {
       name = "Go to prev",
       d = { vim.diagnostic.goto_next, "Next diagnostic" }
     },
+    ["'"] = {"<cmd>TrimWhitespace<CR><cmd>TrimEndLines<CR>", "Trim Whitespace and empty EOF lines" },
     ["<leader>"] = { ":Telescope find_files theme=ivy find_command=fd,--hidden,--follow<CR>", "Fuzzy find files" },
 }
 wk.register(global, { prefix = "<leader>" })
@@ -58,4 +76,13 @@ map("v", ">", ">gv", opts)
 map("n", "<tab>", "%", opts)
 map("v", "<tab>", "%", opts)
 map("n", "U", "<cmd>redo<cr>", opts)
+
+
+map("n", "<C-j>", ":m .+1<CR>==")
+map("n", "<C-k>", ":m .-2<CR>==")
+map("i", "<C-j>", "<Esc>:m .+1<CR>==gi")
+map("i", "<C-k>", "<Esc>:m .-2<CR>==gi")
+map("v", "<C-j>", ":m '>+1<CR>gv=gv")
+map("v", "<C-k>", ":m '<-2<CR>gv=gv")
+
 
