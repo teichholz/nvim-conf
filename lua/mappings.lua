@@ -48,7 +48,8 @@ local global = {
     },
     s = {
       name = "Search",
-      b = { ":Telescope live_grep theme=ivy<CR>", "Search buffer" }
+      p = { ":Telescope live_grep theme=ivy<CR>", "Search project" },
+      b = { ":Telescope current_buffer_fuzzy_find theme=ivy<CR>", "Search buffer" }
     },
     e = { vim.diagnostic.open_float, "Show diagnostics" },
     o = {

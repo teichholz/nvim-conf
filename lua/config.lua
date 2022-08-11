@@ -36,3 +36,8 @@ require('leap').set_default_keymaps(true)
 
 require("mason").setup()
 
+require("nvim-autopairs").setup {
+  fast_wrap = {
+    map = '<M-w>'
+  }
+}

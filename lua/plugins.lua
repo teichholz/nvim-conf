@@ -138,8 +138,7 @@ return require('packer').startup(function(use)
 	}
 
   use {
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
+    "windwp/nvim-autopairs"
   }
 
   use "machakann/vim-sandwich"
