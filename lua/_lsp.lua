@@ -1,13 +1,5 @@
-local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.keymap.set(mode, lhs, rhs, options)
-end
-
-local lspconf = {}
-lspconf['sumneko_lua'] = {
+local lspConf = {}
+lspConf['sumneko_lua'] = {
   settings = {
     Lua = {
       runtime = {
@@ -33,24 +25,24 @@ lspconf['sumneko_lua'] = {
   },
 }
 
-lspconf['bashls'] = {
+lspConf['bashls'] = {
 	filetypes = {"sh", "zsh", "bash"},
 	cmd_env = {
 		GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)|*zsh*"
 	},
 }
-lspconf['rnix'] = {}
-lspconf['pyright'] = {}
-lspconf['tsserver'] = {}
+lspConf['rnix'] = {}
+lspConf['pyright'] = {}
+lspConf['tsserver'] = {}
 
 -- needed for jsonls
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-lspconf['jsonls'] = {
+lspConf['jsonls'] = {
   capabilities = capabilities,
 }
 
-lspconf['ccls']= {
+lspConf['ccls']= {
   init_options = {
     compilationDatabaseDirectory = "build";
     index = {
@@ -61,14 +53,10 @@ lspconf['ccls']= {
     };
   }
 }
-
-local lspServers = { "sumneko_lua", "rnix", "bashls", "pyright", "tsserver", "ccls" }
-
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local wk = require("which-key")
+local map = Lib.Keys.map
 local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -109,21 +97,17 @@ local lsp_flags = {}
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 
-for _, server in ipairs(lspServers) do
+for server, lspc in pairs(lspConf) do
   local conf = {
     on_attach = on_attach,
     flags = lsp_flags,
 		capabilities = capabilities
 	}
 
-  Lib.Table.extend(conf, lspconf[server])
+  Lib.Table.extend(conf, lspc)
 
 	require('lspconfig')[server].setup(conf)
 end
-
-require("flutter-tools").setup{
-	on_attach = on_attach
-}
 
 require("mason-lspconfig").setup{
   automatic_installation = true,
