@@ -81,8 +81,8 @@ map("n", "U", "<cmd>redo<cr>", opts)
 
 map("n", "<C-j>", ":m .+1<CR>==")
 map("n", "<C-k>", ":m .-2<CR>==")
-map("i", "<C-j>", "<Esc>:m .+1<CR>==gi")
-map("i", "<C-k>", "<Esc>:m .-2<CR>==gi")
+-- map("i", "<C-j>", "<Esc>:m .+1<CR>==gi")
+-- map("i", "<C-k>", "<Esc>:m .-2<CR>==gi")
 map("v", "<C-j>", ":m '>+1<CR>gv=gv")
 map("v", "<C-k>", ":m '<-2<CR>gv=gv")
 

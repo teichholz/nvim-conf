@@ -91,6 +91,7 @@ local on_attach = function(_, bufnr)
 
   map('n', 'K', vim.lsp.buf.hover, bufopts)
   map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  map('i', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 end
 
 local lsp_flags = {}
@@ -109,6 +110,10 @@ for server, lspc in pairs(lspConf) do
 	require('lspconfig')[server].setup(conf)
 end
 
+-- auto install configured lsp servers
 require("mason-lspconfig").setup{
   automatic_installation = true,
 }
+
+-- show progress of lsp server startup / indexing
+require"fidget".setup{}
