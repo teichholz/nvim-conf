@@ -193,6 +193,9 @@ return require('packer').startup(function(use)
   use "mattn/emmet-vim"
   use "windwp/nvim-ts-autotag"
 
+  -- Private plugins
+  use "/home/tim/git/dired.nvim"
+
   if packer_bootstrap then
     require('packer').sync()
   end

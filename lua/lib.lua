@@ -16,3 +16,17 @@ function Lib.Keys.map(mode, lhs, rhs, opts)
     end
     vim.keymap.set(mode, lhs, rhs, options)
 end
+
+P = function(v)
+  print(vim.inspect(v))
+  return v
+end
+
+RELOAD = function(...)
+  return require"plenary.reload".reload_module(...)
+end
+
+R = function(name)
+  RELOAD(name)
+  return require(name)
+end

@@ -49,12 +49,16 @@ local global = {
     s = {
       name = "Search",
       p = { ":Telescope live_grep theme=ivy<CR>", "Search project" },
-      b = { ":Telescope current_buffer_fuzzy_find theme=ivy<CR>", "Search buffer" }
+      b = { ":Telescope current_buffer_fuzzy_find theme=ivy<CR>", "Search buffer" },
+      h = { ":Telescope help_tags theme=ivy<CR>", "Search vim help" },
     },
     e = { vim.diagnostic.open_float, "Show diagnostics" },
     o = {
      name = "Open",
      ["-"] = { "<cmd>Ex<cr>", "Open netrw" }
+    },
+    g = {
+      g = { "<cmd>Neogit<cr>", "Git overview" },
     },
     ["["] = {
       name = "Go to prev",
@@ -85,5 +89,3 @@ map("n", "<C-k>", ":m .-2<CR>==")
 -- map("i", "<C-k>", "<Esc>:m .-2<CR>==gi")
 map("v", "<C-j>", ":m '>+1<CR>gv=gv")
 map("v", "<C-k>", ":m '<-2<CR>gv=gv")
-
-
