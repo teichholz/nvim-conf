@@ -180,7 +180,12 @@ return require('packer').startup(function(use)
 
   use "rcarriga/nvim-notify"
 
-	use "tpope/vim-commentary"
+	use {
+    "numToStr/Comment.nvim",
+    config = function()
+      require"Comment".setup()
+    end
+  }
 
   use({
     "kylechui/nvim-surround",
