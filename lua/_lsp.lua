@@ -91,7 +91,6 @@ local on_attach = function(_, bufnr)
 
   map('n', 'K', vim.lsp.buf.hover, bufopts)
   map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  map('i', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 end
 
 local lsp_flags = {}

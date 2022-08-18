@@ -197,6 +197,7 @@ return require('packer').startup(function(use)
   -- Emmet
   use "mattn/emmet-vim"
   use "windwp/nvim-ts-autotag"
+  use "junegunn/vim-easy-align"
 
   -- Private plugins
   use "/home/tim/git/dired.nvim"

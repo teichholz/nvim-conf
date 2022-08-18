@@ -1,7 +1,7 @@
 local wk = require("which-key")
 
 local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
+    local options = { noremap = true, silent = true, }
     if opts then
         options = vim.tbl_extend("force", options, opts)
     end
@@ -52,6 +52,10 @@ local global = {
       b = { ":Telescope current_buffer_fuzzy_find theme=ivy<CR>", "Search buffer" },
       h = { ":Telescope help_tags theme=ivy<CR>", "Search vim help" },
     },
+    S = {
+      name = "Snippets",
+      r = { function() require'snippets' end, "Reload snippets" }
+    },
     e = { vim.diagnostic.open_float, "Show diagnostics" },
     o = {
      name = "Open",
@@ -60,6 +64,7 @@ local global = {
     g = {
       g = { "<cmd>Neogit<cr>", "Git overview" },
     },
+    t = { "<Plug>PlenaryTestFile", "Plenary test file" },
     ["["] = {
       name = "Go to prev",
       d = { vim.diagnostic.goto_prev, "Previous diagnostic" }
@@ -85,7 +90,33 @@ map("n", "U", "<cmd>redo<cr>", opts)
 
 map("n", "<C-j>", ":m .+1<CR>==")
 map("n", "<C-k>", ":m .-2<CR>==")
--- map("i", "<C-j>", "<Esc>:m .+1<CR>==gi")
--- map("i", "<C-k>", "<Esc>:m .-2<CR>==gi")
 map("v", "<C-j>", ":m '>+1<CR>gv=gv")
 map("v", "<C-k>", ":m '<-2<CR>gv=gv")
+
+local ls = require("luasnip")
+-- <c-k> is my expansion key
+-- this will expand the current item or jump to the next item within the snippet.
+map({ "i", "s" }, "<c-j>", function()
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end, { silent = true })
+
+-- <c-j> is my jump backwards key.
+-- this always moves to the previous item within the snippet
+map({ "i", "s" }, "<c-k>", function()
+  if ls.jumpable(-1) then
+    ls.jump(-1)
+  end
+end, { silent = true })
+
+-- <c-l> is selecting within a list of options.
+-- This is useful for choice nodes (introduced in the forthcoming episode 2)
+map("i", "<c-l>", function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end)
+
+map("i", "<c-u>", require "luasnip.extras.select_choice")
+
