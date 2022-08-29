@@ -37,6 +37,7 @@ local global = {
     c = {
       name = "Code",
       e = {":TroubleToggle<CR>", "Show code errors" },
+      d = {":lua require('neogen').generate()<CR>", "Add documentation"}
     },
     p = {
       name = "Project",
