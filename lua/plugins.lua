@@ -116,8 +116,10 @@ return require('packer').startup(function(use)
 
   use {
       'nvim-treesitter/nvim-treesitter',
+      'nvim-treesitter/nvim-treesitter-textobjects',
       run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
+  use 'tommcdo/vim-exchange'
 
 	-- task runner
 	--use "stevearc/overseer.nvim"
