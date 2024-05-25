@@ -55,7 +55,7 @@ lspConf['ccls']= {
 }
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local wk = require("which-key")
+--local wk = require("which-key")
 local map = Lib.Keys.map
 local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -86,8 +86,8 @@ local on_attach = function(_, bufnr)
       f = { vim.lsp.buf.formatting, "Format buffer" },
     },
   }
-  wk.register(g, { prefix = "g", mode = "n" })
-  wk.register(leader, { prefix = "<leader>", mode = "n" })
+  --wk.register(g, { prefix = "g", mode = "n" })
+  --wk.register(leader, { prefix = "<leader>", mode = "n" })
 
   map('n', 'K', vim.lsp.buf.hover, bufopts)
   map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
@@ -115,4 +115,4 @@ require("mason-lspconfig").setup{
 }
 
 -- show progress of lsp server startup / indexing
-require"fidget".setup{}
+-- require"fidget".setup{}

@@ -20,13 +20,13 @@ local options = {
 
 -- smart search
   smartcase = true,
+  -- cursor line
 
--- cursor line
   cursorline = true,
 
 -- theme
   termguicolors = true,
-  background = "dark",
+  --background = "dark",
 
 -- mouse 
   mouse = "a",
@@ -36,7 +36,12 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.g.mapleader = ' '
-vim.g.edge_style = "aura"
-vim.g.edge_better_performance = 0
-vim.cmd("colorscheme edge")
+-- local handle = io.popen('defaults read -g AppleInterfaceStyle 2>/dev/null')
+-- local result = handle:read("*a")
+-- handle:close()
+-- if string.gsub(result, "%s+", "") == 'Dark' then
+--   vim.cmd("set background=dark")
+-- else
+--   vim.cmd("set background=light")
+-- end
+-- vim.cmd("hi Normal ctermbg=none guibg=none")

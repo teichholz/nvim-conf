@@ -90,19 +90,7 @@ require 'nvim-treesitter.configs'.setup {
 
 }
 
--- This is your opts table
-require("telescope").setup {
-  extensions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_ivy {}
-    }
-  }
-}
-
 require('leap').set_default_keymaps(true)
-
-
-require("mason").setup()
 
 require("nvim-autopairs").setup {
   fast_wrap = {

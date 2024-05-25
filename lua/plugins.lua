@@ -23,188 +23,38 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use "rktjmp/hotpot.nvim"
-
-  -- lsp code completion
-  use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-    "j-hui/fidget.nvim"
-  }
-
-  -- nice ui
-  use "stevearc/dressing.nvim"
-  use {
-    "rcarriga/nvim-notify",
-    config = function()
-      vim.notify = require'notify'
-    end
-  }
-  use({
-    "glepnir/lspsaga.nvim",
-    branch = "main",
-    config = function()
-      local saga = require("lspsaga")
-
-      saga.init_lsp_saga({
-        -- your configuration
-      })
-    end,
-  })
-
-  -- write documentation easily
-  use {
-    "danymat/neogen",
-    config = function()
-      require('neogen').setup { snippet_engine = "luasnip" }
-    end,
-    requires = "nvim-treesitter/nvim-treesitter",
-    -- Uncomment next line if you want to follow only stable versions
-    -- tag = "*"
-  }
-
-  use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' }
-
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lsp-signature-help'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
   use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'onsails/lspkind.nvim'
 
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {}
-    end
-  }
-
-
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    -- or                            , branch = '0.1.x',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
-
-  use { 'nvim-telescope/telescope-ui-select.nvim' }
-
-  use {
-    "nvim-telescope/telescope-file-browser.nvim",
-    config = function()
-      require("telescope").setup {
-        extensions = {
-          file_browser = {
-            theme = "ivy",
-            -- disables netrw and use telescope-file-browser in its place
-            hijack_netrw = true,
-            mappings = {
-              ["i"] = {
-                -- your custom insert mode mappings
-              },
-              ["n"] = {
-                -- your custom normal mode mappings
-              },
-            },
-          },
-        }
-      }
-    end
-  }
-
-  use {
-    'nvim-telescope/telescope-fzf-native.nvim', run = 'make',
-    config = function()
-      require('telescope').setup {
-        extensions = {
-          fzf = {
-            fuzzy = true, -- false will only do exact matching
-            override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-          }
-        }
-      }
-    end
-  }
-
-
-  use {
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-  }
   use 'tommcdo/vim-exchange'
-
-  -- task runner
-  --use "stevearc/overseer.nvim"
-
-  use {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup {
-        detection_methods = { "lsp", "pattern" },
-        patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".projectile" }
-      }
-    end
-  }
-
-  use {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require 'colorizer'.setup()
-    end
-  }
 
   use {
     "windwp/nvim-autopairs"
   }
 
-  use "machakann/vim-sandwich"
+  -- use "machakann/vim-sandwich"
+  
+  use "mg979/vim-visual-multi"
 
   use "tpope/vim-sensible"
-  use "TimUntersberger/neogit"
-  use {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup()
-    end
-  }
-
   use "ggandor/leap.nvim"
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-
-  use "sainnhe/edge"
-
-  use { 'glepnir/dashboard-nvim' }
-
-  -- Lua
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup {
-        height = { min = 4, max = 45 }, -- min and max height of the columns
-        width = { min = 20, max = 35 }, -- min and max width of the columns
-        spacing = 0, -- spacing between columns
-        align = "left", -- align columns left, center or right
-      }
-    end
-  }
-
+  
   use {
     "numToStr/Comment.nvim",
     config = function()
       require "Comment".setup()
     end
   }
+
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  -- use({ "neovim/nvim-lspconfig" })
+  -- use({"williamboman/mason.nvim", 
+  --   conifg = function()
+  --     require("mason").setup()
+  --   end})
 
   use({
     "kylechui/nvim-surround",
@@ -215,8 +65,10 @@ return require('packer').startup(function(use)
 
   -- Emmet
   use "mattn/emmet-vim"
-  use "windwp/nvim-ts-autotag"
+  -- use "windwp/nvim-ts-autotag"
   use "junegunn/vim-easy-align"
+
+  use "rakr/vim-one"
 
   -- Private plugins
   use "/home/tim/git/dired.nvim"
