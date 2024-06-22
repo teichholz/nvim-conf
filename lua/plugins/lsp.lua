@@ -17,23 +17,21 @@ return {
         end,
         -- Next, you can provide a dedicated handler for specific servers.
         -- For example, a handler override for the `rust_analyzer`:
-        ["rust_analyzer"] = function()
-          require("rust-tools").setup {}
-        end
       }
     end
   },
   {
     "neovim/nvim-lspconfig",
     keys = {
-      { "go", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols (Telescope)" },
-      { "gf", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Dynamic Workspace Symbols (Telescope)" },
-      { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Definitions (Telescope)" },
-      { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Implementations (Telescope)" },
-      { "gD", "<cmd>Telescope lsp_references<cr>", desc = "References (Telescope)" },
-      { "cr", vim.lsp.buf.rename, desc = "Rename" },
-      { "ca", vim.lsp.buf.code_action, desc = "Code Action" },
-      { "cf", vim.lsp.buf.format, desc = "Format" },
+      { "go",     "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Document Symbols (Telescope)" },
+      { "gf",     "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Dynamic Workspace Symbols (Telescope)" },
+      { "gd",     "<cmd>Telescope lsp_definitions<cr>",               desc = "Definitions (Telescope)" },
+      { "gi",     "<cmd>Telescope lsp_implementations<cr>",           desc = "Implementations (Telescope)" },
+      { "gD",     "<cmd>Telescope lsp_references<cr>",                desc = "References (Telescope)" },
+      { "cr",     vim.lsp.buf.rename,                                 desc = "Rename" },
+      { "ca",     vim.lsp.buf.code_action,                            desc = "Code Action" },
+      { "<cmd>.", vim.lsp.buf.code_action,                            desc = "Code Action" },
+      { "cf",     vim.lsp.buf.format,                                 desc = "Format" },
     }
   },
   {
@@ -50,10 +48,17 @@ return {
       })
     end
   },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    opts = true,
+    keys = { {
+      "[c", function() require("treesitter-context").go_to_context(vim.v.count1) end, desc = "Go to upper context"
+    } }
+  },
   { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "nvim-treesitter/nvim-treesitter" } },
   {
     "folke/trouble.nvim",
-    branch = "dev", -- Trouble v3
+    cmd = "Trouble",
     keys = {
       {
         "<leader>xx",

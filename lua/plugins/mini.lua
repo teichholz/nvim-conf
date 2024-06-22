@@ -22,10 +22,15 @@ return {
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
-    config = true
-    -- use opts = {} for passing setup options
+    config = true,
+    opts = {
+      fast_wrap = {
+        map = '<C-e>',
+      }
+    }
     -- this is equalent to setup({}) function
   },
+
 
   -- Surround plugin
   { 'echasnovski/mini.surround',  version = false, config = true },
@@ -49,9 +54,15 @@ return {
         -- Built-in completion
         { mode = 'i', keys = '<C-x>' },
 
+        -- c key for code actions
+        { mode = 'n', keys = 'c' },
+
         -- `g` key
         { mode = 'n', keys = 'g' },
         { mode = 'x', keys = 'g' },
+
+        { mode = 'n', keys = '[' },
+        { mode = 'n', keys = ']' },
 
         -- Marks
         { mode = 'n', keys = "'" },
